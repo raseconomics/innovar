@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Remove accents and hyphens in character vector — allpautils_names • lis</title>
+<title>Peru names and spatial — Peru • lis</title>
 
 
 <!-- jquery -->
@@ -41,11 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Remove accents and hyphens in character vector — allpautils_names" />
-<meta property="og:description" content="This function will allow you to remove accents, hyphens and
-  any strange characters that come from the UTF-8 encoding, with the intention
-  of working with standardized names or texts.Review:
-  https://cran.r-project.org/web/packages/MazamaSpatialUtils/vignettes/MazamaSpatialUtils.html" />
+<meta property="og:title" content="Peru names and spatial — Peru" />
+<meta property="og:description" content="A dataset containing the names of the 1874 districts, 196 provinces and 25 regions of Peru according INEI - 2017, additionally also is the limits administrative level 3 in a spatial vector format." />
 
 
 
@@ -125,35 +122,37 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Remove accents and hyphens in character vector</h1>
-    <small class="dont-index">Source: <a href='https://github.com/healthinnovation/lis/blob/master/R/allpautils_names.R'><code>R/allpautils_names.R</code></a></small>
-    <div class="hidden name"><code>allpautils_names.Rd</code></div>
+    <h1>Peru names and spatial</h1>
+    <small class="dont-index">Source: <a href='https://github.com/healthinnovation/lis/blob/master/R/data.R'><code>R/data.R</code></a></small>
+    <div class="hidden name"><code>Peru.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function will allow you to remove accents, hyphens and
-  any strange characters that come from the UTF-8 encoding, with the intention
-  of working with standardized names or texts.Review:
-  https://cran.r-project.org/web/packages/MazamaSpatialUtils/vignettes/MazamaSpatialUtils.html</p>
+    <p>A dataset containing the names of the 1874 districts, 196 provinces and 25 regions of Peru according INEI - 2017, additionally also is the limits administrative level 3 in a spatial vector format.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>allpautils_names</span><span class='op'>(</span><span class='va'>string</span><span class='op'>)</span></pre>
-
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>string</th>
-      <td><p>Characters vector</p></td>
-    </tr>
-    </table>
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>Peru</span><span class='op'>)</span></pre>
 
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>string</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Perú"</span>, <span class='st'>"Estados Unidos"</span><span class='op'>)</span>
-<span class='fu'>allpautils_names</span><span class='op'>(</span><span class='va'>string</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "Peru"           "Estados Unidos"</div><div class='input'>
-</div></pre>
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+
+    <p>A dataset with 1874 rows and 9 variables:</p>
+<dl>
+  <dt><b>ubigeo</b></dt><dd><p>Code of six numbers for each district</p></dd>
+  <dt><b>reg.code</b></dt><dd><p>Code to each region</p></dd>
+  <dt><b>reg</b></dt><dd><p>Name of each region</p></dd>
+  <dt><b>prov.code</b></dt><dd><p>Code to each province</p></dd>
+  <dt><b>prov</b></dt><dd><p>Name of each province</p></dd>
+  <dt><b>distr.code</b></dt><dd><p>Code to each district</p></dd>
+  <dt><b>distr</b></dt><dd><p>Name of each district</p></dd>
+  <dt><b>capital</b></dt><dd><p>Name of the capital main</p></dd>
+
+</dl>
+
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='https://www.inei.gob.pe/'>https://www.inei.gob.pe/</a></p>
+
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
