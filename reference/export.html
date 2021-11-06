@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Extract vegetation index of MODIS — get_vegetation • innovar</title>
+<title>Export CSV file to MongoDB — export • innovar</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Extract vegetation index of MODIS — get_vegetation" />
-<meta property="og:description" content="A function that extract the values of vegetation by month." />
+<meta property="og:title" content="Export CSV file to MongoDB — export" />
+<meta property="og:description" content="This a Python wrapper of the insert_many() method of package pymongo to insert a list of documents as a collection in a database in MongoDB." />
 
 
 
@@ -122,73 +122,48 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Extract vegetation index of MODIS</h1>
-    <small class="dont-index">Source: <a href='https://github.com/healthinnovation/innovar/blob/master/R/get_vegetation.R'><code>R/get_vegetation.R</code></a></small>
-    <div class="hidden name"><code>get_vegetation.Rd</code></div>
+    <h1>Export CSV file to MongoDB</h1>
+    <small class="dont-index">Source: <a href='https://github.com/healthinnovation/innovar/blob/master/R/export.R'><code>R/export.R</code></a></small>
+    <div class="hidden name"><code>export.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A function that extract the values of vegetation by <b>month</b>.</p>
+    <p>This a Python wrapper of the <code>insert_many()</code> method of package pymongo to insert a list of documents as a collection in a database in MongoDB.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_vegetation</span><span class='op'>(</span><span class='va'>from</span>, <span class='va'>to</span>, <span class='va'>band</span>, <span class='va'>region</span>, fun <span class='op'>=</span> <span class='st'>"count"</span>, scale <span class='op'>=</span> <span class='fl'>1000</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>export</span><span class='op'>(</span><span class='va'>filepath</span>, <span class='va'>dbname</span>, <span class='va'>user</span>, <span class='va'>password</span>, interpreter <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>to, from</th>
-      <td><p>the starting and final range of date.</p></td>
+      <th>filepath</th>
+      <td><p>CSV file path.</p></td>
     </tr>
     <tr>
-      <th>band</th>
-      <td><p>name of bands.</p></td>
+      <th>dbname</th>
+      <td><p>Database name.</p></td>
     </tr>
     <tr>
-      <th>region</th>
-      <td><p>is a feature or feature collection.</p></td>
+      <th>user</th>
+      <td><p>User name.</p></td>
     </tr>
     <tr>
-      <th>fun</th>
-      <td><p>function for extract statistic zonal (count, kurtosis, max, mean, median , min, mode , percentile , std, sum, variance, first).</p></td>
+      <th>password</th>
+      <td><p>Password.</p></td>
     </tr>
     <tr>
-      <th>scale</th>
-      <td><p>A nominal scale in meters of the projection to work in.</p></td>
+      <th>interpreter</th>
+      <td><p>Path of the Python interpreter (optional)</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a sf object with the new variables.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Name of some bands.</p><ul>
-<li><p><b>NDVI:</b> Normalized Difference Vegetation Index.</p></li>
-<li><p><b>EVI:</b> Enhanced Vegetation Index.</p></li>
-<li><p><b>SAVI:</b> Soil Adjusted Vegetation Index.</p></li>
-</ul>
-
+    <p>Confirmation message if exporting was successful. Else an error.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/r-spatial/rgee/'>rgee</a></span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>lis</span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span>
-<span class='fu'><a href='https://r-spatial.github.io/rgee//reference/ee_Initialize.html'>ee_Initialize</a></span><span class='op'>(</span><span class='op'>)</span>
-
-<span class='co'># 1. Reading a sf object</span>
-<span class='va'>region</span> <span class='op'>&lt;-</span> <span class='fu'>import_db</span><span class='op'>(</span><span class='st'>"Peru_shp"</span><span class='op'>)</span>
-<span class='va'>region_ee</span> <span class='op'>&lt;-</span> <span class='fu'><a href='pol_as_ee.html'>pol_as_ee</a></span><span class='op'>(</span><span class='va'>region</span>, id <span class='op'>=</span> <span class='st'>"distr"</span>, simplify <span class='op'>=</span> <span class='fl'>1000</span><span class='op'>)</span>
-
-<span class='co'># 2. Extracting climate information</span>
-<span class='va'>data</span> <span class='op'>&lt;-</span> <span class='va'>region_ee</span> <span class='op'>%&gt;%</span> <span class='fu'>get_vegetation</span><span class='op'>(</span>
-  from <span class='op'>=</span> <span class='st'>"2001-02-01"</span>, to <span class='op'>=</span> <span class='st'>"2002-12-31"</span>, band <span class='op'>=</span> <span class='st'>"NDVI"</span>, fun <span class='op'>=</span> <span class='st'>"max"</span>
-<span class='op'>)</span>
-<span class='op'>}</span>
-</div></pre>
+    <pre class="examples"></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
