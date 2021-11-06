@@ -29,7 +29,7 @@ peru.ndvi   <-  peru.region %>%
                 band = "NDVI", fun = "mean")
 
 
-peru.def    <-  new_region %>% 
+peru.def    <-  peru.region %>% 
                 get_def(
                 from = "2018-02-01", to = "2019-12-31")
 
